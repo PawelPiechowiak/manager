@@ -2,9 +2,14 @@ package com.pawelpiechowiak.manager;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
-@RestController
+@Controller
 public class UserController {
 
     @Autowired
@@ -12,7 +17,7 @@ public class UserController {
 
     @ResponseStatus(value = HttpStatus.NOT_FOUND)
     public class ResourceNotFoundException extends RuntimeException {
-        public ResourceNotFoundException(String message) {
+        private ResourceNotFoundException(String message) {
             super(message);
         }
     }
@@ -26,4 +31,17 @@ public class UserController {
             throw new ResourceNotFoundException("The user does not exist.");
         }
     }
+
+    @GetMapping(value = "/index/{id}")
+    public String main(Model model, @PathVariable("id") int id) {
+        if (userProvider.getUser(id) != null) {
+            model.addAttribute("lat", userProvider.getUser(id).getAddress().getGeo().getLat());
+        } else {
+            throw new ResourceNotFoundException("The user does not exist.");
+        }
+        return "welcome"; //view
+    }
+
 }
+
+
