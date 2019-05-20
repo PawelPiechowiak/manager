@@ -3,6 +3,7 @@ package com.pawelpiechowiak.manager;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,15 +14,13 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class UserProvider {
 
     private List<User> users;
 
-    public UserProvider() {
-        this.users = new ArrayList<>();
-    }
-
-    public List<User> deserialize() throws IOException {
+    public UserProvider() throws IOException {
+        users = new ArrayList<>();
         String webPage = "http://jsonplaceholder.typicode.com/users";
 
         try (InputStream is = new URL(webPage).openStream();
@@ -30,10 +29,15 @@ public class UserProvider {
             Gson gson = new Gson();
             JsonArray jsonArray = gson.fromJson(reader, JsonArray.class);
 
-            for(JsonElement element: jsonArray){
+            for (JsonElement element : jsonArray) {
                 users.add(gson.fromJson(element, User.class));
             }
-            return users;
         }
+    }
+    public User getUser(int index){
+        if(index > 0 && index <= 10){
+            return users.get(index-1);
+        }
+        return null;
     }
 }
