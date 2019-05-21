@@ -35,7 +35,7 @@ public class UserController {
     @GetMapping(value = "/index/{id}")
     public String main(Model model, @PathVariable("id") int id) {
         if (userProvider.getUser(id) != null) {
-            model.addAttribute("lat", userProvider.getUser(id).getAddress().getGeo().getLat());
+            model.addAttribute("users", userProvider.getUsers());
         } else {
             throw new ResourceNotFoundException("The user does not exist.");
         }
