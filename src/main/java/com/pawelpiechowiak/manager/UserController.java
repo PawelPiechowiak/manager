@@ -16,7 +16,7 @@ public class UserController {
     private UserProvider userProvider;
 
     @ResponseStatus(value = HttpStatus.NOT_FOUND)
-    public class ResourceNotFoundException extends RuntimeException {
+    private class ResourceNotFoundException extends RuntimeException {
         private ResourceNotFoundException(String message) {
             super(message);
         }
@@ -32,14 +32,21 @@ public class UserController {
         }
     }
 
-    @GetMapping(value = "/index/{id}")
-    public String main(Model model, @PathVariable("id") int id) {
-        if (userProvider.getUser(id) != null) {
-            model.addAttribute("users", userProvider.getUsers());
-        } else {
-            throw new ResourceNotFoundException("The user does not exist.");
-        }
-        return "welcome"; //view
+    @GetMapping(value = "/")
+    public String index() {
+        return "index";
+    }
+
+    @GetMapping(value = "/table")
+    public String table(Model model) {
+        model.addAttribute("users", userProvider.getUsers());
+        return "table";
+    }
+
+    @GetMapping(value = "/adjust")
+    public String adjust(Model model) {
+        model.addAttribute("users", userProvider.getUsers());
+        return "adjust";
     }
 
 }

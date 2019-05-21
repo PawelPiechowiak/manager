@@ -8,8 +8,29 @@
     font-weight: bold;
 }
 .first-color{
-    background-color: #FFF2DF;
+    background-color: #E0F4F6;
 }
 .second-color{
     background-color: #DEFFF0;
+}
+.third-color{
+    background-color: #E7FFF4;
+}
+.background{
+    background-color: #DEFFF0;
+}
+.center{
+    margin-top: 20%
+}
+
+/*-------------MEDIA----------------*/
+@media (max-width: 780px){
+  .center{
+    margin-top: 55%;
+  }
+}
+@media (max-width: 422px){
+  .center{
+    margin-top: 70%;
+  }
 }
