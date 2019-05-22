@@ -22,6 +22,15 @@
 .center{
     margin-top: 20%
 }
+.user-info{
+    background-color: white;
+}
+.bold{
+    font-weight: bold;
+}
+.user-data{
+    padding-left: 2%;
+}
 
 /*-------------MEDIA----------------*/
 @media (max-width: 780px){
@@ -32,5 +41,14 @@
 @media (max-width: 422px){
   .center{
     margin-top: 70%;
+  }
+  h2{
+    padding-left: 25%;
+  }
+  .padding{
+    padding-left: 10%
+  }
+  .user-data{
+    padding-left: none;
   }
 }

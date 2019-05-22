@@ -5,17 +5,100 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <title>iLock</title>
     <link rel="stylesheet" th:href="@{/main.css}"/>
+    <script>
+        $(document).ready(function() {
+        for(let i = 1; i<= 10; i++){
+            $("#" + i).click(function(){
+               $("#div" + i).toggle( 'slow', function(){
 
+               });
+            });
+          }
+         });
+
+
+    </script>
 </head>
 <body class="background">
 <div class="container">
     <div th:each="user: ${users}">
         <p>
-            <button type="button" class="btn btn-primary btn-lg btn-block"
+            <button type="button" th:id="${user.id}" class="btn btn-primary btn-lg btn-block"
                     th:text="${user.id} + '. ' + ${user.name}"></button>
         </p>
+        <div th:id="'div' + ${user.id}" style="display:none;" class="user-info pt-2">
+            <div class="row">
+                <div class="col-lg-4 col-sm-12 col-md-4 user-data padding">
+                    <div class="pb-2">
+                        <h2>User data: </h2>
+                    </div>
+                    <div class="pb-2">
+                        <a>Username: </a>
+                        <a class="bold" th:text="${user.username}"></a>
+                    </div>
+                    <div class="pb-2">
+                        <a>Email: </a>
+                        <a class="bold" th:text="${user.email}"></a>
+                    </div>
+                    <div class="pb-2">
+                        <a>Phone: </a>
+                        <a class="bold" th:text="${user.phone}"></a>
+                    </div>
+                    <div class="pb-2">
+                        <a>Website: </a>
+                        <a class="bold" th:text="${user.website}"></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-12 col-md-3 padding">
+                    <div class="pb-2">
+                        <h2>Address: </h2>
+                    </div>
+                    <div class="pb-2">
+                        <a>Street: </a>
+                        <a class="bold" th:text="${user.address.street}"></a>
+                    </div>
+                    <div class="pb-2">
+                        <a>Suite: </a>
+                        <a class="bold" th:text="${user.address.suite}"></a>
+                    </div>
+                    <div class="pb-2">
+                        <a>City: </a>
+                        <a class="bold" th:text="${user.address.city}"></a>
+                    </div>
+                    <div class="pb-2">
+                        <a>Zipcode: </a>
+                        <a class="bold" th:text="${user.address.zipcode}"></a>
+                    </div>
+                    <div class="pb-2">
+                        <a>Geo: </a>
+                        <ul>
+                            <li><a>Lat: </a><a class="bold" th:text="${user.address.geo.lat}"></a></li>
+                            <li><a>Lng: </a><a class="bold" th:text="${user.address.geo.lng}"></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-sm-12 col-md-5 padding">
+                    <div class="pb-2">
+                        <h2>Company: </h2>
+                    </div>
+                    <div class="pb-2">
+                        <a>Name: </a>
+                        <a class="bold" th:text="${user.company.name}"></a>
+                    </div>
+                    <div class="pb-2">
+                        <a>Catch phrase: </a>
+                        <a class="bold" th:text="${user.company.catchPhrase}"></a>
+                    </div>
+                    <div class="pb-2">
+                        <a>BS: </a>
+                        <a class="bold" th:text="${user.company.bs}"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 </body>
