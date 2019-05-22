@@ -40,4 +40,8 @@ public class UserProvider {
         }
         return null;
     }
+
+    public List<User> getUsers() {
+        return users;
+    }
 }
