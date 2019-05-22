@@ -34,12 +34,6 @@ public class UserProvider {
             }
         }
     }
-    public User getUser(int index){
-        if(index > 0 && index <= 10){
-            return users.get(index-1);
-        }
-        return null;
-    }
 
     public List<User> getUsers() {
         return users;

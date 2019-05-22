@@ -6,7 +6,7 @@ import org.junit.Test;
 import java.io.IOException;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertNotNull;
 
 public class UserProviderTest {
 
@@ -18,12 +18,12 @@ public class UserProviderTest {
     }
 
     @Test
-    public void getUserWithAppropriateIndex() {
-        assertEquals("Gwenborough", userProvider.getUser(1).getAddress().getCity());
+    public void getUsers() {
+        assertEquals("Gwenborough", userProvider.getUsers().get(0).getAddress().getCity());
     }
 
     @Test
-    public void getUserWithWrongIndex() {
-        assertNull(userProvider.getUser(-1));
+    public void checkIfUsersAreNull() {
+        assertNotNull(userProvider.getUsers());
     }
 }
